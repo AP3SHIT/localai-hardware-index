@@ -87,6 +87,13 @@
     .roi-value { color: var(--green); }
     .roi-value.highlight { color: var(--green); font-size: 1.05em; }
 
+    /* ── Card image ── */
+    .card-img { height: 180px; overflow: hidden; position: relative; background: linear-gradient(135deg, #1c2128 0%, #21262d 100%); }
+    .card-img img { width: 100%; height: 100%; object-fit: contain; padding: 16px; transition: transform 0.3s ease; }
+    .card:hover .card-img img { transform: scale(1.04); }
+    .card-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+    .card-img-placeholder svg { opacity: 0.12; }
+
     /* ── Card footer ── */
     .card-footer { padding: 14px 22px; border-top: 1px solid var(--border); display: flex; gap: 10px; }
     .btn { flex: 1; padding: 9px; border-radius: 8px; font-size: 0.82em; font-weight: 600; cursor: pointer; border: none; transition: opacity 0.2s; text-align: center; text-decoration: none; display: inline-block; }
@@ -205,8 +212,13 @@
       ? `<a href="${hw.buy_url}" target="_blank" class="btn btn-primary">Buy →</a>`
       : `<span class="btn btn-primary" style="opacity:0.4;cursor:default">Custom build</span>`;
 
+    const imgBlock = hw.image_url
+      ? `<div class="card-img"><img src="${hw.image_url}" alt="${hw.name}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\'card-img-placeholder\'><svg width=\'80\' height=\'80\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238b949e\' stroke-width=\'1\'><rect x=\'2\' y=\'3\' width=\'20\' height=\'14\' rx=\'2\'/><path d=\'M8 21h8M12 17v4\'/></svg></div>'"></div>`
+      : `<div class="card-img"><div class="card-img-placeholder"><svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#8b949e" stroke-width="1"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div></div>`;
+
     return `
     <div class="card" data-category="${hw.category}">
+      ${imgBlock}
       <div class="card-header">
         <div class="card-category">${hw.category.toUpperCase()} · ${hw.specs.gpu || hw.specs.unified_memory_gb + 'GB unified'}</div>
         <div class="card-name">${hw.name}</div>

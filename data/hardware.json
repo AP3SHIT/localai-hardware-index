@@ -12,6 +12,7 @@
       "price_eur": 185,
       "available": true,
       "buy_url": "https://bee-link.com",
+      "image_url": "https://www.bee-link.com/cdn/shop/files/8_8d260b40-a809-46a9-8759-28668664d822.png?v=1764747057",
       "specs": {
         "cpu": "Intel i7-1260P",
         "cpu_cores": 12,
@@ -44,6 +45,7 @@
       "price_eur": 950,
       "available": true,
       "buy_url": "https://minisforumpc.eu",
+      "image_url": "https://minisforumpc.eu/cdn/shop/files/420ad670f42a215ffcdb0cc36ea2f9a4_a02206c1-662b-4587-877a-bc40cb48bfb6.png?v=1770653558",
       "specs": {
         "cpu": "AMD Ryzen AI 9 HX 370",
         "cpu_cores": 12,
@@ -76,6 +78,7 @@
       "price_eur": 1200,
       "available": true,
       "buy_url": "https://minisforumpc.eu",
+      "image_url": "https://minisforumpc.eu/cdn/shop/files/1_dff433a1-25f9-4580-a65a-aaac29771877.png?v=1765531513",
       "specs": {
         "cpu": "AMD Ryzen AI 9 HX 370",
         "cpu_cores": 12,
@@ -108,6 +111,7 @@
       "price_eur": 800,
       "available": true,
       "buy_url": "https://csl-computer.com",
+      "image_url": null,
       "specs": {
         "cpu": "AMD Ryzen AI 9 HX 370",
         "cpu_cores": 12,
@@ -140,6 +144,7 @@
       "price_eur": 2100,
       "available": true,
       "buy_url": "https://de.gmktec.com",
+      "image_url": "https://de.gmktec.com/cdn/shop/files/1_3b20060d-54a0-4869-a820-26ed4fa3ceb0_480x.png?v=1757747621",
       "specs": {
         "cpu": "AMD Ryzen AI Max+ 395",
         "cpu_cores": 16,
@@ -172,6 +177,7 @@
       "price_eur": 2900,
       "available": true,
       "buy_url": "https://de.gmktec.com",
+      "image_url": "https://de.gmktec.com/cdn/shop/files/1_3b20060d-54a0-4869-a820-26ed4fa3ceb0_480x.png?v=1757747621",
       "specs": {
         "cpu": "AMD Ryzen AI Max+ 395",
         "cpu_cores": 16,
@@ -204,6 +210,7 @@
       "price_eur": 1800,
       "available": true,
       "buy_url": "https://minisforumpc.eu",
+      "image_url": "https://minisforumpc.eu/cdn/shop/files/000ahwsa_asm0721.542.png?v=1765529770",
       "specs": {
         "cpu": "Intel i9-12900H",
         "cpu_cores": 20,
@@ -236,6 +243,7 @@
       "price_eur": 4500,
       "available": true,
       "buy_url": null,
+      "image_url": null,
       "specs": {
         "cpu": "AMD EPYC / Threadripper",
         "cpu_cores": 32,
