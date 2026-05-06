@@ -1,0 +1,353 @@
+{
+  "meta": {
+    "last_updated": "2026-05-07",
+    "version": "1.0",
+    "update_note": "Run update_hardware.py to refresh prices and availability"
+  },
+  "hardware": [
+    {
+      "id": "beelink-sei12",
+      "name": "Beelink SEi12 Pro",
+      "category": "entry",
+      "price_eur": 185,
+      "available": true,
+      "buy_url": "https://bee-link.com",
+      "specs": {
+        "cpu": "Intel i7-1260P",
+        "cpu_cores": 12,
+        "ram_gb": 32,
+        "vram_gb": 0,
+        "unified_memory_gb": 32,
+        "memory_bandwidth_gbs": 50,
+        "storage_gb": 500,
+        "tdp_watts": 28,
+        "gpu": "Intel Iris Xe (96EU)"
+      },
+      "performance": {
+        "best_model": "llama3.1:8b",
+        "best_model_size_b": 8,
+        "tokens_per_sec": 8,
+        "concurrent_users": 1,
+        "tasks_per_day": 480,
+        "avg_task_tokens": 500,
+        "intelligence_tier": 1,
+        "context_window_k": 8
+      },
+      "replaces_monthly_eur": 40,
+      "payoff_months": 5,
+      "tags": ["silent", "low-power", "solo", "beginner"]
+    },
+    {
+      "id": "minisforum-hx370-64",
+      "name": "Minisforum AI X1 Pro (64GB)",
+      "category": "mid",
+      "price_eur": 950,
+      "available": true,
+      "buy_url": "https://minisforumpc.eu",
+      "specs": {
+        "cpu": "AMD Ryzen AI 9 HX 370",
+        "cpu_cores": 12,
+        "ram_gb": 64,
+        "vram_gb": 0,
+        "unified_memory_gb": 64,
+        "memory_bandwidth_gbs": 90,
+        "storage_gb": 1000,
+        "tdp_watts": 45,
+        "gpu": "AMD Radeon 890M (16CU)"
+      },
+      "performance": {
+        "best_model": "qwen2.5-coder:14b",
+        "best_model_size_b": 14,
+        "tokens_per_sec": 14,
+        "concurrent_users": 2,
+        "tasks_per_day": 960,
+        "avg_task_tokens": 500,
+        "intelligence_tier": 2,
+        "context_window_k": 32
+      },
+      "replaces_monthly_eur": 80,
+      "payoff_months": 12,
+      "tags": ["no-gpu", "unified-memory", "solo", "small-team"]
+    },
+    {
+      "id": "minisforum-hx370-96",
+      "name": "Minisforum AI X1 Pro (96GB)",
+      "category": "mid",
+      "price_eur": 1200,
+      "available": true,
+      "buy_url": "https://minisforumpc.eu",
+      "specs": {
+        "cpu": "AMD Ryzen AI 9 HX 370",
+        "cpu_cores": 12,
+        "ram_gb": 96,
+        "vram_gb": 0,
+        "unified_memory_gb": 96,
+        "memory_bandwidth_gbs": 90,
+        "storage_gb": 1000,
+        "tdp_watts": 45,
+        "gpu": "AMD Radeon 890M (16CU)"
+      },
+      "performance": {
+        "best_model": "qwen2.5:32b",
+        "best_model_size_b": 32,
+        "tokens_per_sec": 8,
+        "concurrent_users": 2,
+        "tasks_per_day": 800,
+        "avg_task_tokens": 500,
+        "intelligence_tier": 3,
+        "context_window_k": 32
+      },
+      "replaces_monthly_eur": 120,
+      "payoff_months": 10,
+      "tags": ["no-gpu", "unified-memory", "small-team", "32b-capable"]
+    },
+    {
+      "id": "csl-venombox-hx370-64",
+      "name": "CSL VenomBox AI HX 370 (64GB)",
+      "category": "mid",
+      "price_eur": 800,
+      "available": true,
+      "buy_url": "https://csl-computer.com",
+      "specs": {
+        "cpu": "AMD Ryzen AI 9 HX 370",
+        "cpu_cores": 12,
+        "ram_gb": 64,
+        "vram_gb": 0,
+        "unified_memory_gb": 64,
+        "memory_bandwidth_gbs": 90,
+        "storage_gb": 500,
+        "tdp_watts": 45,
+        "gpu": "AMD Radeon 890M (16CU)"
+      },
+      "performance": {
+        "best_model": "qwen2.5-coder:14b",
+        "best_model_size_b": 14,
+        "tokens_per_sec": 14,
+        "concurrent_users": 2,
+        "tasks_per_day": 960,
+        "avg_task_tokens": 500,
+        "intelligence_tier": 2,
+        "context_window_k": 32
+      },
+      "replaces_monthly_eur": 80,
+      "payoff_months": 10,
+      "tags": ["german", "no-gpu", "unified-memory", "solo"]
+    },
+    {
+      "id": "gmktec-evox2-96",
+      "name": "GMKtec EVO-X2 (96GB)",
+      "category": "pro",
+      "price_eur": 2100,
+      "available": true,
+      "buy_url": "https://de.gmktec.com",
+      "specs": {
+        "cpu": "AMD Ryzen AI Max+ 395",
+        "cpu_cores": 16,
+        "ram_gb": 96,
+        "vram_gb": 0,
+        "unified_memory_gb": 96,
+        "memory_bandwidth_gbs": 256,
+        "storage_gb": 1000,
+        "tdp_watts": 120,
+        "gpu": "AMD Radeon 890M (40CU)"
+      },
+      "performance": {
+        "best_model": "llama3.3:70b",
+        "best_model_size_b": 70,
+        "tokens_per_sec": 7,
+        "concurrent_users": 3,
+        "tasks_per_day": 1500,
+        "avg_task_tokens": 500,
+        "intelligence_tier": 4,
+        "context_window_k": 128
+      },
+      "replaces_monthly_eur": 200,
+      "payoff_months": 11,
+      "tags": ["70b-capable", "no-gpu", "unified-memory", "team"]
+    },
+    {
+      "id": "gmktec-evox2-128",
+      "name": "GMKtec EVO-X2 (128GB)",
+      "category": "pro",
+      "price_eur": 2900,
+      "available": true,
+      "buy_url": "https://de.gmktec.com",
+      "specs": {
+        "cpu": "AMD Ryzen AI Max+ 395",
+        "cpu_cores": 16,
+        "ram_gb": 128,
+        "vram_gb": 0,
+        "unified_memory_gb": 128,
+        "memory_bandwidth_gbs": 256,
+        "storage_gb": 1000,
+        "tdp_watts": 120,
+        "gpu": "AMD Radeon 890M (40CU)"
+      },
+      "performance": {
+        "best_model": "llama3.3:70b",
+        "best_model_size_b": 70,
+        "tokens_per_sec": 8,
+        "concurrent_users": 4,
+        "tasks_per_day": 2000,
+        "avg_task_tokens": 500,
+        "intelligence_tier": 4,
+        "context_window_k": 128
+      },
+      "replaces_monthly_eur": 250,
+      "payoff_months": 12,
+      "tags": ["70b-capable", "no-gpu", "unified-memory", "team"]
+    },
+    {
+      "id": "ms01-rtx3090",
+      "name": "Minisforum MS-01 + RTX 3090",
+      "category": "pro",
+      "price_eur": 1800,
+      "available": true,
+      "buy_url": "https://minisforumpc.eu",
+      "specs": {
+        "cpu": "Intel i9-12900H",
+        "cpu_cores": 20,
+        "ram_gb": 64,
+        "vram_gb": 24,
+        "unified_memory_gb": 0,
+        "memory_bandwidth_gbs": 936,
+        "storage_gb": 1000,
+        "tdp_watts": 200,
+        "gpu": "NVIDIA RTX 3090"
+      },
+      "performance": {
+        "best_model": "llama3.3:70b-q4",
+        "best_model_size_b": 34,
+        "tokens_per_sec": 30,
+        "concurrent_users": 6,
+        "tasks_per_day": 3000,
+        "avg_task_tokens": 500,
+        "intelligence_tier": 3,
+        "context_window_k": 32
+      },
+      "replaces_monthly_eur": 300,
+      "payoff_months": 6,
+      "tags": ["discrete-gpu", "fast", "team", "coding"]
+    },
+    {
+      "id": "dual-rtx3090",
+      "name": "Server + 2× RTX 3090",
+      "category": "team",
+      "price_eur": 4500,
+      "available": true,
+      "buy_url": null,
+      "specs": {
+        "cpu": "AMD EPYC / Threadripper",
+        "cpu_cores": 32,
+        "ram_gb": 128,
+        "vram_gb": 48,
+        "unified_memory_gb": 0,
+        "memory_bandwidth_gbs": 1872,
+        "storage_gb": 4000,
+        "tdp_watts": 500,
+        "gpu": "2× NVIDIA RTX 3090"
+      },
+      "performance": {
+        "best_model": "llama3.3:70b",
+        "best_model_size_b": 70,
+        "tokens_per_sec": 55,
+        "concurrent_users": 10,
+        "tasks_per_day": 6000,
+        "avg_task_tokens": 500,
+        "intelligence_tier": 4,
+        "context_window_k": 128
+      },
+      "replaces_monthly_eur": 500,
+      "payoff_months": 9,
+      "tags": ["70b-full", "team-server", "enterprise", "fine-tune-capable"]
+    }
+  ],
+  "intelligence_tiers": [
+    {
+      "tier": 1,
+      "label": "Capable Intern",
+      "description": "Handles clear, well-defined tasks reliably. Drafting, summarizing, simple Q&A, basic code.",
+      "good_for": ["Email drafts", "Summaries", "Simple scripts", "FAQ answers"],
+      "not_for": ["Complex reasoning", "Multi-step planning", "Ambiguous problems"]
+    },
+    {
+      "tier": 2,
+      "label": "Junior Consultant",
+      "description": "Solid on most business tasks. Good code, structured analysis, handles context well.",
+      "good_for": ["Code generation", "Document analysis", "Data extraction", "Content creation"],
+      "not_for": ["Novel problem solving", "Complex multi-step reasoning", "Expert-level domain tasks"]
+    },
+    {
+      "tier": 3,
+      "label": "Senior Specialist",
+      "description": "Handles complex tasks with nuance. Strong reasoning, good at catching edge cases.",
+      "good_for": ["Architecture decisions", "Complex debugging", "Research synthesis", "Multi-step automation"],
+      "not_for": ["Cutting-edge research", "Truly novel problems"]
+    },
+    {
+      "tier": 4,
+      "label": "Domain Expert",
+      "description": "Near-frontier quality on most real-world tasks. Strong reasoning, broad knowledge, reliable on complex work.",
+      "good_for": ["Complex analysis", "Advanced coding", "Strategic planning", "Multi-step agent tasks"],
+      "not_for": ["Frontier research", "Tasks requiring real-time world knowledge"]
+    }
+  ],
+  "hidden_costs": [
+    {
+      "id": "dual-sub",
+      "title": "The Dual Subscription Trap",
+      "monthly_eur": 40,
+      "description": "Most users pay for both ChatGPT and Claude because each has strengths the other lacks. That's €40/mo minimum before doing anything serious.",
+      "icon": "💳"
+    },
+    {
+      "id": "rate-limits",
+      "title": "Rate Limits at Peak Hours",
+      "monthly_eur": 0,
+      "description": "You pay for Pro but still get throttled when you need it most — during work hours. Local AI has no queue.",
+      "icon": "⏳"
+    },
+    {
+      "id": "api-overages",
+      "title": "API Cost Scaling",
+      "monthly_eur": 50,
+      "description": "Automations and integrations use the API, not the chat plan. 100k requests/mo at GPT-4o pricing = €50-200 extra.",
+      "icon": "📈"
+    },
+    {
+      "id": "team-seats",
+      "title": "Per-Seat Team Pricing",
+      "monthly_eur": 100,
+      "description": "5 employees = 5× subscriptions. €20/person/month × 5 = €100/mo. Local AI serves the whole team from one box.",
+      "icon": "👥"
+    },
+    {
+      "id": "context-limits",
+      "title": "Context Window Frustration",
+      "monthly_eur": 30,
+      "description": "Long documents hit context limits. You either truncate, lose work, or upgrade to a pricier plan with bigger context.",
+      "icon": "📄"
+    },
+    {
+      "id": "price-hikes",
+      "title": "Unpredictable Price Hikes",
+      "monthly_eur": 20,
+      "description": "OpenAI raised API prices 3× in 24 months. You build workflows around a price, then it changes. Local AI: locked in forever.",
+      "icon": "🔺"
+    },
+    {
+      "id": "data-privacy",
+      "title": "Your Data Trains Their Model",
+      "monthly_eur": 0,
+      "description": "Business documents, client data, internal strategy — sent to servers you don't control. Local AI never phones home.",
+      "icon": "🔒"
+    },
+    {
+      "id": "downtime",
+      "title": "Outages at Deadline Time",
+      "monthly_eur": 0,
+      "description": "OpenAI, Anthropic, and Google all have outages. Usually during high-demand hours — exactly when you need it.",
+      "icon": "🔴"
+    }
+  ]
+}

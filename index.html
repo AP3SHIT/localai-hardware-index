@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local AI Hardware Index — What Can It Actually Do?</title>
+  <style>
+    :root {
+      --bg: #0d1117; --surface: #161b22; --border: #30363d;
+      --text: #e6edf3; --muted: #8b949e; --dim: #484f58;
+      --blue: #58a6ff; --green: #3fb950; --orange: #f0883e;
+      --purple: #bc8cff; --red: #f85149; --yellow: #d29922;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
+
+    /* ── Header ── */
+    header { border-bottom: 1px solid var(--border); padding: 24px 40px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.1em; font-weight: 700; color: var(--blue); letter-spacing: 1px; }
+    .logo span { color: var(--muted); font-weight: 400; }
+    .updated { font-size: 0.75em; color: var(--dim); }
+
+    /* ── Hero ── */
+    .hero { text-align: center; padding: 60px 40px 40px; }
+    .hero h1 { font-size: 2.4em; font-weight: 800; margin-bottom: 14px; line-height: 1.2; }
+    .hero h1 em { color: var(--blue); font-style: normal; }
+    .hero p { color: var(--muted); font-size: 1.05em; max-width: 580px; margin: 0 auto 30px; line-height: 1.7; }
+
+    /* ── Filters ── */
+    .filters { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; padding: 0 40px 40px; }
+    .filter-btn { background: var(--surface); border: 1px solid var(--border); color: var(--muted); padding: 8px 18px; border-radius: 20px; cursor: pointer; font-size: 0.85em; transition: all 0.2s; }
+    .filter-btn:hover, .filter-btn.active { border-color: var(--blue); color: var(--blue); background: #161b2280; }
+
+    /* ── Grid ── */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; padding: 0 40px 60px; max-width: 1400px; margin: 0 auto; }
+
+    /* ── Card ── */
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: transform 0.2s, border-color 0.2s; }
+    .card:hover { transform: translateY(-3px); border-color: #58a6ff40; }
+    .card-header { padding: 20px 22px 16px; border-bottom: 1px solid var(--border); }
+    .card-category { font-size: 0.68em; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 6px; }
+    .card-name { font-size: 1.1em; font-weight: 700; margin-bottom: 4px; }
+    .card-price { font-size: 1.5em; font-weight: 800; color: var(--green); }
+    .card-price span { font-size: 0.5em; color: var(--muted); font-weight: 400; }
+
+    /* ── Speed meter ── */
+    .card-body { padding: 18px 22px; }
+    .section-title { font-size: 0.68em; text-transform: uppercase; letter-spacing: 1px; color: var(--dim); margin-bottom: 10px; }
+
+    .speed-block { background: #0d1117; border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; }
+    .speed-main { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+    .speed-num { font-size: 2em; font-weight: 800; color: var(--orange); }
+    .speed-unit { font-size: 0.8em; color: var(--muted); }
+    .speed-human { font-size: 0.8em; color: var(--muted); padding: 4px 0; }
+    .speed-human strong { color: var(--text); }
+    .speed-bar-wrap { margin-top: 8px; }
+    .speed-bar-label { display: flex; justify-content: space-between; font-size: 0.68em; color: var(--dim); margin-bottom: 4px; }
+    .speed-bar-bg { background: var(--border); border-radius: 3px; height: 6px; }
+    .speed-bar-fg { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--green), var(--orange)); transition: width 0.8s ease; }
+
+    /* ── Intelligence ── */
+    .intel-block { background: #0d1117; border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; }
+    .intel-tier { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .intel-dots { display: flex; gap: 4px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
+    .dot.filled { background: var(--purple); }
+    .intel-label { font-weight: 700; font-size: 0.95em; color: var(--purple); }
+    .intel-desc { font-size: 0.78em; color: var(--muted); line-height: 1.5; margin-bottom: 8px; }
+    .intel-good { display: flex; flex-wrap: wrap; gap: 5px; }
+    .tag { font-size: 0.68em; background: #bc8cff15; border: 1px solid #bc8cff30; color: var(--purple); padding: 3px 8px; border-radius: 10px; }
+    .tag.limit { background: #f8514915; border-color: #f8514930; color: var(--red); }
+
+    /* ── Capacity ── */
+    .capacity-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+    .cap-item { background: #0d1117; border-radius: 8px; padding: 10px 12px; }
+    .cap-label { font-size: 0.65em; text-transform: uppercase; letter-spacing: 1px; color: var(--dim); margin-bottom: 4px; }
+    .cap-value { font-size: 1.2em; font-weight: 700; }
+    .cap-value.blue { color: var(--blue); }
+    .cap-value.green { color: var(--green); }
+    .cap-sub { font-size: 0.65em; color: var(--muted); margin-top: 2px; }
+
+    /* ── ROI ── */
+    .roi-block { background: #3fb95010; border: 1px solid #3fb95025; border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; }
+    .roi-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 0.82em; }
+    .roi-row:last-child { margin-bottom: 0; padding-top: 8px; border-top: 1px solid #3fb95025; font-weight: 700; }
+    .roi-label { color: var(--muted); }
+    .roi-value { color: var(--green); }
+    .roi-value.highlight { color: var(--green); font-size: 1.05em; }
+
+    /* ── Card footer ── */
+    .card-footer { padding: 14px 22px; border-top: 1px solid var(--border); display: flex; gap: 10px; }
+    .btn { flex: 1; padding: 9px; border-radius: 8px; font-size: 0.82em; font-weight: 600; cursor: pointer; border: none; transition: opacity 0.2s; text-align: center; text-decoration: none; display: inline-block; }
+    .btn-primary { background: var(--blue); color: #0d1117; }
+    .btn-secondary { background: var(--border); color: var(--text); }
+    .btn:hover { opacity: 0.85; }
+
+    /* ── Hidden Costs Section ── */
+    .hidden-costs { max-width: 1400px; margin: 0 auto; padding: 0 40px 80px; }
+    .section-header { text-align: center; margin-bottom: 40px; }
+    .section-header h2 { font-size: 1.8em; font-weight: 800; margin-bottom: 10px; }
+    .section-header h2 em { color: var(--red); font-style: normal; }
+    .section-header p { color: var(--muted); max-width: 500px; margin: 0 auto; }
+    .costs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .cost-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .cost-icon { font-size: 1.6em; margin-bottom: 10px; }
+    .cost-title { font-weight: 700; margin-bottom: 6px; font-size: 0.95em; }
+    .cost-amount { font-size: 1.2em; font-weight: 800; color: var(--red); margin-bottom: 8px; }
+    .cost-amount.zero { color: var(--muted); font-size: 0.85em; }
+    .cost-desc { font-size: 0.78em; color: var(--muted); line-height: 1.6; }
+
+    /* ── Total counter ── */
+    .cost-total { background: #f8514910; border: 1px solid #f8514930; border-radius: 12px; padding: 24px; text-align: center; margin-top: 24px; }
+    .cost-total-label { font-size: 0.85em; color: var(--muted); margin-bottom: 8px; }
+    .cost-total-num { font-size: 2.5em; font-weight: 800; color: var(--red); }
+    .cost-total-sub { font-size: 0.8em; color: var(--muted); margin-top: 6px; }
+
+    /* ── Footer ── */
+    footer { border-top: 1px solid var(--border); padding: 30px 40px; text-align: center; color: var(--dim); font-size: 0.8em; }
+    footer a { color: var(--blue); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      header { padding: 16px 20px; }
+      .hero { padding: 40px 20px 30px; }
+      .hero h1 { font-size: 1.7em; }
+      .grid, .hidden-costs { padding: 0 16px 40px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">LocalAI<span> Hardware Index</span></div>
+  <div class="updated" id="updated-date">Loading...</div>
+</header>
+
+<div class="hero">
+  <h1>What can a local AI box<br><em>actually</em> handle?</h1>
+  <p>Real performance numbers. Honest capability ratings. No hype. Find the right hardware for what you actually need — and see what you stop paying for.</p>
+</div>
+
+<div class="filters">
+  <button class="filter-btn active" onclick="filterCards('all', this)">All hardware</button>
+  <button class="filter-btn" onclick="filterCards('entry', this)">Entry (under €300)</button>
+  <button class="filter-btn" onclick="filterCards('mid', this)">Mid (€300–€1,500)</button>
+  <button class="filter-btn" onclick="filterCards('pro', this)">Pro (€1,500–€3,500)</button>
+  <button class="filter-btn" onclick="filterCards('team', this)">Team server (€3,500+)</button>
+</div>
+
+<div class="grid" id="hardware-grid"></div>
+
+<div class="hidden-costs">
+  <div class="section-header">
+    <h2>The <em>real</em> cost of cloud AI</h2>
+    <p>Most people only count the subscription. Here's what they miss.</p>
+  </div>
+  <div class="costs-grid" id="costs-grid"></div>
+  <div class="cost-total">
+    <div class="cost-total-label">Realistic monthly cloud AI spend for a 3-person team</div>
+    <div class="cost-total-num" id="total-cost">€0</div>
+    <div class="cost-total-sub">vs €0/month after hardware. Forever.</div>
+  </div>
+</div>
+
+<footer>
+  Built for the <a href="#">Local AI Hardware channel</a> · Data updated regularly · Performance figures are real-world averages, not marketing specs
+</footer>
+
+<script>
+  // ── Human reading speed reference ──
+  const HUMAN_READ_TPS = 5;   // ~250 words/min = ~5 tokens/sec
+  const MAX_TPS_SCALE  = 60;  // top of the bar
+
+  function humanSpeedLabel(tps) {
+    const mult = (tps / HUMAN_READ_TPS).toFixed(1);
+    if (tps <= HUMAN_READ_TPS) return `<strong>Similar to your reading speed</strong> — comfortable, natural pace`;
+    if (tps <= 12) return `<strong>${mult}× your reading speed</strong> — noticeably fast, no waiting`;
+    if (tps <= 30) return `<strong>${mult}× your reading speed</strong> — very fast, you'll be reading as it types`;
+    return `<strong>${mult}× your reading speed</strong> — faster than you can read, instant feel`;
+  }
+
+  function tierDots(tier, max = 4) {
+    return Array.from({length: max}, (_, i) =>
+      `<div class="dot ${i < tier ? 'filled' : ''}"></div>`
+    ).join('');
+  }
+
+  function payoffBar(months) {
+    const w = Math.min((months / 24) * 100, 100);
+    const color = months <= 6 ? '#3fb950' : months <= 12 ? '#d29922' : '#f0883e';
+    return `<div style="background:var(--border);border-radius:3px;height:4px;margin-top:6px;">
+      <div style="width:${w}%;height:100%;border-radius:3px;background:${color};"></div>
+    </div>`;
+  }
+
+  function renderCard(hw, tiers) {
+    const tier = tiers.find(t => t.tier === hw.performance.intelligence_tier);
+    const tps = hw.performance.tokens_per_sec;
+    const barWidth = Math.min((tps / MAX_TPS_SCALE) * 100, 100);
+    const yearSavings = hw.replaces_monthly_eur * 12;
+    const yr2 = (hw.replaces_monthly_eur * 24) - hw.price_eur;
+
+    const goodTags = (tier.good_for || []).slice(0, 3).map(t => `<span class="tag">${t}</span>`).join('');
+    const buyBtn = hw.buy_url
+      ? `<a href="${hw.buy_url}" target="_blank" class="btn btn-primary">Buy →</a>`
+      : `<span class="btn btn-primary" style="opacity:0.4;cursor:default">Custom build</span>`;
+
+    return `
+    <div class="card" data-category="${hw.category}">
+      <div class="card-header">
+        <div class="card-category">${hw.category.toUpperCase()} · ${hw.specs.gpu || hw.specs.unified_memory_gb + 'GB unified'}</div>
+        <div class="card-name">${hw.name}</div>
+        <div class="card-price">€${hw.price_eur.toLocaleString()} <span>one-time</span></div>
+      </div>
+
+      <div class="card-body">
+
+        <div class="section-title">Speed</div>
+        <div class="speed-block">
+          <div class="speed-main">
+            <div class="speed-num">${tps}</div>
+            <div class="speed-unit">tokens/sec · ${hw.performance.best_model}</div>
+          </div>
+          <div class="speed-human">${humanSpeedLabel(tps)}</div>
+          <div class="speed-bar-wrap">
+            <div class="speed-bar-label">
+              <span>Human reading speed (${HUMAN_READ_TPS} t/s)</span>
+              <span>${tps} t/s</span>
+            </div>
+            <div class="speed-bar-bg">
+              <div class="speed-bar-fg" style="width:${barWidth}%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-title">Intelligence Level</div>
+        <div class="intel-block">
+          <div class="intel-tier">
+            <div class="intel-dots">${tierDots(hw.performance.intelligence_tier)}</div>
+            <div class="intel-label">${tier.label}</div>
+          </div>
+          <div class="intel-desc">${tier.description}</div>
+          <div class="intel-good">${goodTags}</div>
+        </div>
+
+        <div class="section-title">Capacity</div>
+        <div class="capacity-grid">
+          <div class="cap-item">
+            <div class="cap-label">Concurrent users</div>
+            <div class="cap-value blue">${hw.performance.concurrent_users}</div>
+            <div class="cap-sub">at comfortable speed</div>
+          </div>
+          <div class="cap-item">
+            <div class="cap-label">Tasks per day</div>
+            <div class="cap-value green">${hw.performance.tasks_per_day.toLocaleString()}</div>
+            <div class="cap-sub">avg 500 tokens each</div>
+          </div>
+          <div class="cap-item">
+            <div class="cap-label">Max model</div>
+            <div class="cap-value" style="font-size:0.9em;color:var(--text)">${hw.performance.best_model_size_b}B</div>
+            <div class="cap-sub">parameters</div>
+          </div>
+          <div class="cap-item">
+            <div class="cap-label">Context window</div>
+            <div class="cap-value" style="color:var(--orange)">${hw.performance.context_window_k}k</div>
+            <div class="cap-sub">tokens</div>
+          </div>
+        </div>
+
+        <div class="section-title">Cost vs Cloud</div>
+        <div class="roi-block">
+          <div class="roi-row">
+            <span class="roi-label">Replaces ~€/month</span>
+            <span class="roi-value">€${hw.replaces_monthly_eur}/mo</span>
+          </div>
+          <div class="roi-row">
+            <span class="roi-label">Payoff period</span>
+            <span class="roi-value">${hw.payoff_months} months</span>
+          </div>
+          <div class="roi-row">
+            <span class="roi-label">Year 2+ net savings</span>
+            <span class="roi-value highlight">+€${yr2.toLocaleString()}/yr</span>
+          </div>
+        </div>
+        ${payoffBar(hw.payoff_months)}
+        <div style="font-size:0.68em;color:var(--dim);text-align:right;margin-top:4px;">${hw.payoff_months} months to break even</div>
+
+      </div>
+
+      <div class="card-footer">
+        ${buyBtn}
+        <button class="btn btn-secondary" onclick="shareCard('${hw.id}')">Share card</button>
+      </div>
+    </div>`;
+  }
+
+  function renderCosts(costs) {
+    const grid = document.getElementById('costs-grid');
+    let total = 0;
+    grid.innerHTML = costs.map(c => {
+      total += c.monthly_eur;
+      return `
+      <div class="cost-card">
+        <div class="cost-icon">${c.icon}</div>
+        <div class="cost-title">${c.title}</div>
+        <div class="cost-amount ${c.monthly_eur === 0 ? 'zero' : ''}">
+          ${c.monthly_eur > 0 ? '+€' + c.monthly_eur + '/mo' : 'No direct cost — but real impact'}
+        </div>
+        <div class="cost-desc">${c.description}</div>
+      </div>`;
+    }).join('');
+    document.getElementById('total-cost').textContent = '€' + total + '/mo';
+  }
+
+  function filterCards(category, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
+    });
+  }
+
+  function shareCard(id) {
+    const url = window.location.href.split('?')[0] + '?card=' + id;
+    navigator.clipboard.writeText(url).then(() => alert('Card link copied!')).catch(() => prompt('Copy this link:', url));
+  }
+
+  // ── Load data ──
+  fetch('./data/hardware.json')
+    .then(r => r.json())
+    .then(data => {
+      document.getElementById('updated-date').textContent = 'Updated ' + data.meta.last_updated;
+      const grid = document.getElementById('hardware-grid');
+      grid.innerHTML = data.hardware.map(hw => renderCard(hw, data.intelligence_tiers)).join('');
+      renderCosts(data.hidden_costs);
+
+      // Handle ?card= deep link
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('card')) {
+        const el = document.querySelector(`[data-category]`);
+        if (el) el.scrollIntoView({behavior: 'smooth'});
+      }
+    });
+</script>
+
+</body>
+</html>
